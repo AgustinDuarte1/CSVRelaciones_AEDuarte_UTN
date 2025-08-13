@@ -20,9 +20,26 @@ async function crear () {
     console.clear()
     const nombre = await input("Nombre: ")
     const apellido = await input("Apellido: ")
-    const dni = await input("DNI: ")
-    const email = await input("Email: ")
 
+    let dni
+    while (true){
+        dni = await input("DNI: ")
+        if(dni.length >= 7 && dni.length <= 8 && /^\d+$/.test(dni)){
+            break
+        } else {
+            console.log("DNI Inválido!");
+        }
+    }
+
+    let email
+    while (true){
+        email = await input("Email: ")
+        if(email.includes("@")){
+            break
+        } else {
+            console.log("Email inválido!")
+        }
+    }
     const usuario = new Usuario(nombre, apellido, dni, email)
     await usuario.guardar()
     await input("....")
