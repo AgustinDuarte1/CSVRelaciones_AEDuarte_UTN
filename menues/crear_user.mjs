@@ -3,6 +3,7 @@ import { Usuario } from "../models/usuarios.mjs"
 import fs from 'fs/promises';
 import path from "path";
 import { fileURLToPath } from "url";
+import chalk from 'chalk';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -18,11 +19,7 @@ async function obtenerUsuarios() {
                 const [id,nombre,apellido, dni, email] = linea.split(';');
                 return {id, nombre, apellido, dni, email};
             });
-
-            if (usuarios.length === 0){
-                console.log('No hay usuarios creados por el momento')
-            }
-
+            
             return usuarios;
         } catch {
             console.log("El archivo no existe")

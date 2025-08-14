@@ -2,6 +2,7 @@ import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 import { input } from "../utils.mjs";
+import ora from 'ora';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -10,12 +11,14 @@ const pathPosts = path.join(__dirname, "../posts.csv");
 
 export async function listarPosts() {
     console.clear();
-    console.log('Lista de Posts: \n');
-
+    const spinner = ora('Cargando los posts...').start();
+   
     try{
         const newUsers = await fs.readFile(pathUsuarios, 'utf-8');
         const newPosts = await fs.readFile(pathPosts, 'utf-8');
 
+        spinner.succeed("Lista de Posts:");
+        
         const usuarios = newUsers
             .split('\n')
             .filter(l => l.trim() !== '' && !l.startsWith('ID;'))

@@ -2,15 +2,17 @@ import { input } from "./utils.mjs"
 import { crearUsuario } from "./menues/crear_user.mjs"
 import { listarPosts } from "./menues/listar_posts.mjs"
 import { IniciarSesion } from "./menues/inicio_sesion.mjs"
+import chalk from "chalk";
+
 
 while (true) {
     console.clear()
-    console.log("\t---Instagram de consola---")
-    console.log("\t--------------------------")
-    console.log("\t    1- Iniciar sesión")
-    console.log("\t    2- Crear cuenta")
-    console.log("\t    3- Listar Posts")
-    console.log("\t    4- Salir")
+    console.log(chalk.bgCyan("\t---Instagram de consola---"))
+    console.log(chalk.blue("\t=========================="))
+    console.log(chalk.blue("\t1- "),("Iniciar sesión"))
+    console.log(chalk.blue("\t2- "),("Crear cuenta"))
+    console.log(chalk.blue("\t3- "),("Listar Posts"))
+    console.log(chalk.blue("\t4- "),("Salir"))
 
     const opcion = await input(": ")
 
@@ -22,7 +24,7 @@ while (true) {
         await crearUsuario();
 
     } else if (opcion === "3"){
-        await listarPosts();
+            await listarPosts();
     }
     else if (opcion === "4") {
       break;
