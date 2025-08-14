@@ -34,9 +34,7 @@ export async function listarPosts() {
 
             if(posts.length === 0){
                 console.log('No hay posts creados por el momento. ');
-                return;
-            }
-
+            } else {
             for (const post of posts){
                 const usuario = usuarios.find(u => u.id === post.usuarioId);
                 const nombreCompleto = usuario
@@ -44,7 +42,7 @@ export async function listarPosts() {
                     : 'Usuario no encontrado';
                 console.log(` "${post.contenido}" - por ${nombreCompleto}`);
             }
-        
+            }
     } catch {
         console.log('Error al listar los posts.');
     }

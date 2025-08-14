@@ -114,20 +114,24 @@ async function eliminarPost(userId) {
         const lineas = data.split("\n");
 
         const encabezado = lineas[0];
-        const restantes = lineas.slice(1).filter(line =>{
+        const cuerpoOriginal = lineas.slice(1);
+
+        const cuerpoFiltrado = cuerpoOriginal.filter(line => {
             const [id, uid] = line.split(";");
             return !(id === idEliminar && uid === userId);
         });
 
-        const nuevoContenido = [encabezado, ...restantes].join("\n");
+        if(cuerpoOriginal.length === cuerpoFiltrado.length){
+            console.log("El ID no existe o no pertenece a este usuario.")
+        } else {
+        const nuevoContenido = [encabezado, ...cuerpoFiltrado].join("\n");
         await fs.writeFile(pathPosts, nuevoContenido);
 
         console.log("Post eliminado con éxito");
+        }
 
     }catch (error){
         console.log("Error al eliminar el post");
-        console.log("Detalles: ", error.message);
-        await input("Presione ENTER para continuar");
     }
     await input("Presione ENTER para continuar...");
 }

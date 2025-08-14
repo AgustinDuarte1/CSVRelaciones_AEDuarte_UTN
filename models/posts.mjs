@@ -29,6 +29,7 @@ export class Post{
         }catch {
             await fs.writeFile(Post.file, Post.columns.join(';') + '\n');
             contenidoArchivo = Post.columns.join(';') + '\n';
+            console.log('Error! No existen posts creados');
         }
 
         const lineas = contenidoArchivo.split('\n').filter(line => line.trim() !== "");
@@ -46,7 +47,7 @@ export class Post{
         }
 
         const nuevaLinea = [nuevoId, this.usuarioId, this.contenido].join(";");
-        const agregarSalto = contenidoArchivo.trim().endsWith("\n") ? "" : "\n";
+         const agregarSalto = lineas.length > 1 ? '\n' : '';
         await fs.appendFile(Post.file, agregarSalto + nuevaLinea);
 
         console.log(`Post guardado con ID ${nuevoId}`)
