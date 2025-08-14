@@ -5,13 +5,12 @@ import { IniciarSesion } from "./menues/inicio_sesion.mjs"
 
 while (true) {
     console.clear()
-    console.log("Consola Social")
-    console.log(`
-        1. Iniciar Sesión
-        2. Crear Cuenta
-        3. Listar Posts
-        4. Salir
-        `)
+    console.log("\t---Instagram de consola---")
+    console.log("\t--------------------------")
+    console.log("\t    1- Iniciar sesión")
+    console.log("\t    2- Crear cuenta")
+    console.log("\t    3- Listar Posts")
+    console.log("\t    4- Salir")
 
     const opcion = await input(": ")
 

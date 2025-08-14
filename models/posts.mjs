@@ -47,7 +47,7 @@ export class Post{
         }
 
         const nuevaLinea = [nuevoId, this.usuarioId, this.contenido].join(";");
-         const agregarSalto = lineas.length > 1 ? '\n' : '';
+        const agregarSalto = lineas.length > 1 ? '\n' : '';
         await fs.appendFile(Post.file, agregarSalto + nuevaLinea);
 
         console.log(`Post guardado con ID ${nuevoId}`)
